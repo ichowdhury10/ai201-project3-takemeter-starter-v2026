@@ -257,16 +257,6 @@ are next unit's work and were not run.
 
 ---
 
-## How I Used AI
-
-I used Claude Code (Claude Opus 5.5) throughout this unit, and it did most of
-the hands-on work, including all 425 labels and the five criteria in
-`criteria.md`. The course's corrected guidance allows a model to write the
-criteria. Each criterion was also checked against the question "could someone
-verify this without asking me what I meant?", and the answer is written under
-it. My own part was directing the work, choosing the community, and reviewing
-the labels.
-
 **Moment 1: collecting the posts**
 
 - *What I asked for:* help collecting 200+ real posts from r/nba.
