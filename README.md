@@ -236,7 +236,24 @@ tokens, seed 42. These are the notebook defaults.
 **Anything I changed from the defaults, and why:** Nothing. The labels are text
 only, and the `source` column is ignored by the notebook.
 
-**Split sizes:** [TODO: filled in from section 3 of the notebook after the run.]
+**Split sizes:** train 297 · validation 64 · test 64 (stratified 70/15/15, seed
+42). The data check cell printed "Data looks fine."
+
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `analysis` | 66 | 14 | 14 |
+| `take` | 150 | 32 | 32 |
+| `reaction` | 81 | 18 | 18 |
+
+Every label has at least 8 posts in the test split. The smallest, `analysis`
+at 14, is where seed-to-seed jumps should be expected next unit.
+
+**How the run was executed:** the notebook's section 1–5 code cells were run in
+order as one Python process from the project `.venv`. Jupyter isn't part of
+`requirements.txt`, and the cells themselves were not changed. Training took
+about 30 seconds on MPS (about 52 seconds end to end). It wrote `results.json`
+(device `mps`, torch 2.14.1, max_length 128) and `test_split.csv`. Sections 6–7
+are next unit's work and were not run.
 
 ---
 
