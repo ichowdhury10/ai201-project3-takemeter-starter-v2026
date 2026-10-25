@@ -51,63 +51,100 @@ whether you hit them:
 
 ---
 
+> **Authorship:** drafted by Claude Code (Claude Opus 5.5) at my request, under
+> the course's corrected guidance that allows a model to write the criteria.
+> Each one includes a check: *could someone verify it without asking me what I
+> meant?* Written on October 25, 2026, before any training run. The only data
+> facts used were the label counts and the test-split sizes, which are the same
+> for all three seeds: 64 test posts, made up of 32 `take`, 18 `reaction` and
+> 14 `analysis`.
+
 ## 1.
 
-<!-- Your criterion. It must name a number. -->
+**Overall accuracy on the held-out test split is at least 0.65 for each of
+seeds 42, 7 and 2024.**
 
+**Why this target:** Always guessing `take` scores exactly 32/64 = 0.50 on every
+seed's test split, so 0.50 is the floor here, not 0.33. 0.65 is 42 of 64: ten
+more posts right than the always-`take` guesser. One post is worth 1.6 points
+on a 64-post test set, so a smaller margin over 0.50 could be a friendly split
+rather than a model that learned anything.
 
-
-**Why this target:**
-
-
+**Could someone check it without asking me?** Yes. It's `accuracy` in each
+seed's entry of `results_three_seeds_before.json`. All three must be ≥ 0.65.
 
 ---
 
 ## 2.
 
-<!-- Your criterion. -->
+**F1 for `analysis` is at least 0.60 for each of seeds 42, 7 and 2024.**
 
+**Why this target:** `analysis` is the distinction this project exists for, and
+it's my smallest label: 94 posts, 14 per test split. A single post changes its
+F1 by roughly 0.05–0.07, so the target can't sit near the edge of what's
+reachable. It's set above criterion 3's target because `analysis` has a visible
+surface signal (numbers, stat abbreviations like TS%, VORP and PER). It isn't
+higher because the second collection pass deliberately added `take` and
+`reaction` posts that contain numbers. A model that has only learned "has a
+digit → analysis" should land below 0.60.
 
-
-**Why this target:**
-
-
+**Could someone check it without asking me?** Yes. It's
+`per_label.analysis.f1` for each seed. All three must be ≥ 0.60.
 
 ---
 
 ## 3.
 
-<!-- Your criterion. -->
+**F1 for `reaction` is at least 0.50 for each of seeds 42, 7 and 2024.**
 
+**Why this target:** `reaction` is my broadest label. It holds feelings about
+games, jokes, jabs at other posters, questions, shared news and off-topic chat,
+because the `banter` label was folded into it. Posts that look nothing alike
+share this label, which makes it the hardest for the model to learn as one
+thing, so it gets a looser target than `analysis`, with 18 test posts each seed.
+0.50 is still a real bar: a model that never predicts `reaction` scores 0 here,
+and one that predicts it at random at its 28% rate lands near 0.28.
 
-
-**Why this target:**
-
-
+**Could someone check it without asking me?** Yes. It's
+`per_label.reaction.f1` for each seed. All three must be ≥ 0.50.
 
 ---
 
 ## 4.
 
-<!-- Your criterion. -->
+**On each of seeds 42, 7 and 2024, accuracy on the model's most-confident third
+of test posts is at least 0.15 higher than on its least-confident third.**
 
+**Why this target:** A confidence score is only useful if it separates the
+predictions you can trust from the ones a person should check. The hard cases
+in this dataset (a stat used to gloat about tonight's game, one game's +/-
+stretched into a trade verdict) are exactly the posts I'd want flagged as
+unsure. Each third is 21 posts, so 0.15 is about 3 posts. A gap smaller than
+that is within one or two posts of noise and wouldn't show the confidence means
+anything.
 
-
-**Why this target:**
-
-
+**Could someone check it without asking me?** Yes. In each seed's `confidence`
+block, `accuracy_most_confident_third − accuracy_least_confident_third` must be
+≥ 0.15 for all three seeds.
 
 ---
 
 ## 5.
 
-<!-- Your criterion. -->
+**When the 30 staff posts are labelled under the staff taxonomy, agreement with
+the staff labels is at least 0.70 (21 of 30), as reported by `agreement.py`.**
 
+**Why this target:** This is the only outside check on whether the boundary
+rules are applied consistently. The staff taxonomy (analysis / hot_take /
+reaction, with "the fact has to do work") is close to mine, so a labelling
+process that applies its own rules tightly should transfer. It isn't higher than
+0.70 because several staff posts were chosen to be ambiguous, and their running
+forum isn't basketball. It isn't lower because anything under 21/30 would mean
+my labels for my own 425 posts can't be trusted either.
 
-
-**Why this target:**
-
-
+**Could someone check it without asking me?** Yes. It's the agreement rate
+`agreement.py` prints (and writes to `agreement_results.json`). It must be
+≥ 21/30.
 
 ---
 

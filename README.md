@@ -150,25 +150,27 @@ words or over 1,500 characters were skipped rather than trimmed. Every row in
   rules (not just the `analysis` ones). Some of the numbered posts are `take` or
   `reaction`, which is the point: a digit alone shouldn't mean `analysis`.
 
-**How I labelled them:** The first 20 rows were reserved for a **cold pass**,
-labelled by hand with no tools and marked `cold` in the note column. The other
-405 were **pre-labelled by Claude Code** under the definitions and rules above,
-and are marked `pre-labeled (Claude)` in the note column.
-[TODO: say how you reviewed them, e.g. "I then read and corrected every
-pre-labelled row; I changed N of them."]
+**How I labelled them:** All 425 rows were labelled by Claude Code under the
+definitions and rules above.
+
+- **405 rows** are marked `pre-labeled (Claude)` in the note column.
+- **The first 20 rows** were set aside as the cold pass. On the course's
+  corrected guidance, Claude labelled these as well, so they are marked
+  `cold-pass row, labelled by Claude (not by hand)` rather than `cold`.
+
+That means there is no by-hand pass in this dataset, which matters for next
+unit's agreement check.
+[TODO: say how you reviewed the labels, e.g. "I then read every row and changed
+N of them."]
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-| `take` | 201 | 49.6% of the 405 pre-labelled |
-| `reaction` | 114 | 28.1% |
-| `analysis` | 90 | 22.2% |
-| *(cold, still to label)* | 20 | — |
-| **Total** | **425** | |
-
-[TODO: refresh this table after the cold pass and your review; the numbers will
-move a little.]
+| `take` | 214 | 50.4% |
+| `reaction` | 117 | 27.5% |
+| `analysis` | 94 | 22.1% |
+| **Total** | **425** | 100% |
 
 No label is above 70%. The largest is `take`, at about half.
 
@@ -241,8 +243,11 @@ only, and the `source` column is ignored by the notebook.
 ## How I Used AI
 
 I used Claude Code (Claude Opus 5.5) throughout this unit, and it did most of
-the hands-on work. The parts that were mine are the 20 cold labels, the five
-criteria in `criteria.md`, and [TODO: your review of the pre-labels].
+the hands-on work, including all 425 labels and the five criteria in
+`criteria.md`. The course's corrected guidance allows a model to write the
+criteria. Each criterion was also checked against the question "could someone
+verify this without asking me what I meant?", and the answer is written under
+it. [TODO: anything you did yourself, such as reviewing the labels.]
 
 **Moment 1: collecting the posts**
 
@@ -267,10 +272,10 @@ criteria in `criteria.md`, and [TODO: your review of the pre-labels].
 - *What I changed:* [TODO: what you changed after reviewing, e.g. a rule you
   tightened or labels you overturned.]
 
-**Pre-labelling disclosure:** 405 of the 425 rows were pre-labelled by Claude
-Code and are marked `pre-labeled (Claude)` in the note column. The 20 rows
-marked `cold` were labelled by me, by hand, before I looked at any of the
-pre-labels. [TODO: confirm, and describe your review of the 405.]
+**Pre-labelling disclosure:** Every label in `labels.csv` came from Claude Code.
+405 rows are marked `pre-labeled (Claude)`, and the 20 cold-pass rows are marked
+`cold-pass row, labelled by Claude (not by hand)`.
+[TODO: describe your review, if any.]
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
