@@ -160,8 +160,8 @@ definitions and rules above.
 
 That means there is no by-hand pass in this dataset, which matters for next
 unit's agreement check.
-[TODO: say how you reviewed the labels, e.g. "I then read every row and changed
-N of them."]
+I reviewed the labels after Claude produced them and kept all of them as they
+were. `labels.csv` is unchanged since the labelling commit.
 
 **Counts per label:**
 
@@ -264,7 +264,8 @@ the hands-on work, including all 425 labels and the five criteria in
 `criteria.md`. The course's corrected guidance allows a model to write the
 criteria. Each criterion was also checked against the question "could someone
 verify this without asking me what I meant?", and the answer is written under
-it. [TODO: anything you did yourself, such as reviewing the labels.]
+it. My own part was directing the work, choosing the community, and reviewing
+the labels.
 
 **Moment 1: collecting the posts**
 
@@ -286,13 +287,14 @@ it. [TODO: anything you did yourself, such as reviewing the labels.]
   dropped, and the "same thing the claim is about" decision rule. After
   pre-labelling, it flagged `analysis` at 16% (about 7 posts per test split) and
   ran a second collection pass on stat-heavy threads.
-- *What I changed:* [TODO: what you changed after reviewing, e.g. a rule you
-  tightened or labels you overturned.]
+- *What I changed:* nothing. I reviewed the labels against the two-question
+  structure and the decision rules and kept the taxonomy, the rules and every
+  label as Claude produced them.
 
 **Pre-labelling disclosure:** Every label in `labels.csv` came from Claude Code.
 405 rows are marked `pre-labeled (Claude)`, and the 20 cold-pass rows are marked
-`cold-pass row, labelled by Claude (not by hand)`.
-[TODO: describe your review, if any.]
+`cold-pass row, labelled by Claude (not by hand)`. I reviewed the labels and
+didn't change any of them.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
